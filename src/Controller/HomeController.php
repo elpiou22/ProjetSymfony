@@ -20,14 +20,17 @@ class HomeController extends AbstractController
 {
 
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
         $default_image = "images/default.webp";
+
+        $movies = $entityManager->getRepository(Movie::class)->findAll();
 
 
 
         return $this->render('base.html.twig', [
             "image_path" => $default_image,
+            'movies' => $movies
         ]);
     }
 
@@ -55,35 +58,45 @@ class HomeController extends AbstractController
     }
 
 
-    #[Route('/create', name: 'app_movie_create')]
-    public function create(
-        Request $request,
-        EntityManagerInterface $entityManager
-    ): Response {
+    #[Route('/create', name: 'movie_create')]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    {
         $movie = new Movie();
         $form = $this->createForm(MovieType::class, $movie);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Gestion du fichier téléchargé
-            $file = $form->get('file')->getData();
-
-            if ($file) {
-                // Déplacement du fichier vers le dossier upload
-                $newFilename = uniqid() . '.' . $file->guessExtension();
-                $file->move('upload', $newFilename);
-
-                // Enregistrement du chemin du fichier dans l'entité Movie
-                $movie->setPosterPath($newFilename);
-            }
-
             $entityManager->persist($movie);
             $entityManager->flush();
 
-            return $this->redirectToRoute('movies_list');
+            return $this->redirectToRoute('home'); // Redirection vers une page de succès
         }
 
-        return $this->render('movies/create.html.twig', [
+        return $this->render('create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('movies/update/{id}', 'app_movie_update')]
+    public function update(
+        Movie $movie,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $form = $this->createForm(MovieType::class, $movie);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($movie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home'); // Redirection vers une page de succès
+        }
+
+        return $this->render('update.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -98,6 +111,7 @@ class HomeController extends AbstractController
         return $this->render('test.html.twig', [
             'movies' => $movies
         ]);
+
     }
 
     #[Route('/movies', name: 'movies_list')]

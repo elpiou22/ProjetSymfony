@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 <nav class="navbar">
     <div class="logo">MonFlix</div>
     <ul class="nav-links">
-        <li><a href="#">Accueil</a></li>
+        <li><a href="">Accueil</a></li>
         <li><a href="#">Séries</a></li>
         <li><a href="#">Films</a></li>
         <li><a href="#">Nouveautés</a></li>
@@ -35,43 +35,23 @@
 
 <!-- Sections des catégories -->
 <section class="categories">
-    <h2>Populaires</h2>
     <div class="movie-row">
-        <img src="{{ asset(image_path) }}" alt="Film 1">
-        <img src="{{ asset(image_path) }}" alt="Film 2">
-        <img src="{{ asset(image_path) }}" alt="Film 3">
-        <img src="{{ asset(image_path) }}" alt="Film 4">
-        <img src="{{ asset(image_path) }}" alt="Film 5">
-    </div>
+        {% for movie in movies %}
 
-    <h2>Recommandés pour Vous</h2>
-    <div class="movie-row">
-        <img src="{{ asset(image_path) }}" alt="Film 6">
-        <img src="{{ asset(image_path) }}" alt="Film 7">
-        <img src="{{ asset(image_path) }}" alt="Film 8">
-        <img src="{{ asset(image_path) }}" alt="Film 9">
-        <img src="{{ asset(image_path) }}" alt="Film 10">
-    </div>
+        <tr>
+            <th><img src="{{ asset(image_path) }}" alt="Film 1"></th>
+            <th>{{ movie.getId }}</th>
+            <th>{{ movie.getName }}</th>
 
-    <h2>Nouveautés</h2>
-    <div class="movie-row">
-        <img src="{{ asset(image_path) }}" alt="Film 11">
-        <img src="{{ asset(image_path) }}" alt="Film 12">
-        <img src="{{ asset(image_path) }}" alt="Film 13">
-        <img src="{{ asset(image_path) }}" alt="Film 14">
-        <img src="{{ asset(image_path) }}" alt="Film 15">
+            <th>{{ movie.getSynopsis }}</th>
+            <th>{{ movie.getReleaseDate | date }}</th>
+            <th> <a href="movies/update/{{ movie.getId }}"> Update </a></th>
+            <th> <a href="movies/delete/{{ movie.getId }}"> Delete </a></th>
+
+        </tr>
+        {% endfor %}
     </div>
 </section>
 </body>
-=======
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Bonjour{% endblock %}</title>
 
-    </head>
-    <body>
-        Bonjour
-    </body>
->>>>>>> 9d17250 (2eme commit)
-</html>
+
