@@ -1,0 +1,16 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a movie</title>
+    <link rel="stylesheet" href="{{ asset('css/page2.css') }}">
+</head>
+<body>
+<h1>Create a movie</h1>
+<form method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="datetime-local" name="releaseDate" placeholder="Release Date" required>
+    <textarea name="synopsis" placeholder="Synopsis" required></textarea>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

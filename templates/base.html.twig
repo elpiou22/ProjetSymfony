@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<<<<<<< HEAD
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site de Streaming</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+</head>
+<body>
+<!-- Barre de navigation -->
+<nav class="navbar">
+    <div class="logo">MonFlix</div>
+    <ul class="nav-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Séries</a></li>
+        <li><a href="#">Films</a></li>
+        <li><a href="#">Nouveautés</a></li>
+        <li><a href="signin">Créer un compte</a></li>
+
+    </ul>
+</nav>
+
+<!-- Bannière principale -->
+<section class="banner">
+    <div class="banner-content">
+        <h1>Film du Moment</h1>
+        <p>Regardez le dernier film à succès dès maintenant !</p>
+        <button>Lire</button>
+        <button>Ajouter à Ma Liste</button>
+    </div>
+</section>
+
+<!-- Sections des catégories -->
+<section class="categories">
+    <h2>Populaires</h2>
+    <div class="movie-row">
+        <img src="{{ asset(image_path) }}" alt="Film 1">
+        <img src="{{ asset(image_path) }}" alt="Film 2">
+        <img src="{{ asset(image_path) }}" alt="Film 3">
+        <img src="{{ asset(image_path) }}" alt="Film 4">
+        <img src="{{ asset(image_path) }}" alt="Film 5">
+    </div>
+
+    <h2>Recommandés pour Vous</h2>
+    <div class="movie-row">
+        <img src="{{ asset(image_path) }}" alt="Film 6">
+        <img src="{{ asset(image_path) }}" alt="Film 7">
+        <img src="{{ asset(image_path) }}" alt="Film 8">
+        <img src="{{ asset(image_path) }}" alt="Film 9">
+        <img src="{{ asset(image_path) }}" alt="Film 10">
+    </div>
+
+    <h2>Nouveautés</h2>
+    <div class="movie-row">
+        <img src="{{ asset(image_path) }}" alt="Film 11">
+        <img src="{{ asset(image_path) }}" alt="Film 12">
+        <img src="{{ asset(image_path) }}" alt="Film 13">
+        <img src="{{ asset(image_path) }}" alt="Film 14">
+        <img src="{{ asset(image_path) }}" alt="Film 15">
+    </div>
+</section>
+</body>
+=======
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Bonjour{% endblock %}</title>
+
+    </head>
+    <body>
+        Bonjour
+    </body>
+>>>>>>> 9d17250 (2eme commit)
+</html>
